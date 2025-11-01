@@ -1,0 +1,189 @@
+.title-section {
+    display: flex;
+    height: 100vh;
+    justify-content: center;      /* vertical centering */
+    align-items: flex-start;      /* horizontal start (left) */
+    flex-direction: column;
+    padding-left: 2vw;            
+}
+
+/* Root baseline */
+:root {
+    font-size: 16px; /* 1rem = 16px */
+}
+
+h6 {
+    font-size: 1.5rem; /* ~18px */
+    margin: 0;
+    padding: 0;
+    font-weight: 300;
+    line-height: 1.1;
+}
+/* Remove default top margin on h1 so it sits directly under the h6 headings */
+h1 {
+    margin: 0;
+    padding: 0;
+}
+.toolbar {
+    display: flex;
+    align-items: top;
+    gap: 20px;
+    margin-bottom: 20px;
+    justify-content: center;
+
+}
+button {
+    background-color: rgb(3, 3, 3);
+    border: none;
+    border-radius: 13px;
+    color: #f8f8f88f;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 5px 8px 5px 8px;
+    margin-top: 5px;
+}
+button:hover {
+    background-color: rgb(44, 2, 2);
+}
+
+body {
+    font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #060606;
+    font-size: 1rem; /* baseline 16px */
+    color: #b3a06e8f;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+/* Responsive hero heading size */
+h1 {
+    font-weight: 700;
+    line-height: 1.05;
+    font-size: 8rem;
+    letter-spacing: -0.02em;
+}
+
+/* Small gap option between h6 and h1 if needed */
+h6 + h1 {
+    margin-top: 0.15rem;
+}
+
+.cube {
+    position: absolute;
+    top: 0;
+    right:-20%;
+    background-color: transparent;
+}
+
+/* Make sure the 3D model sits behind page content and doesn't block interactions */
+.cube {
+    z-index: 0;               /* low stacking level */
+    pointer-events: none;     /* allow clicks to pass through to page */
+}
+
+/* Put main page sections above the model */
+.title-section,
+.toolbar,
+.projects,
+.about-me,
+.contact {
+    position: relative; /* create stacking context for z-index to work */
+    z-index: 10;
+}
+
+/* --- Metallic gloss style (apply via class="metal-gloss") --- */
+.metal-gloss {
+    /* fallback color for very old browsers */
+    color: #d0d3d6;
+
+    /* reflective bands */
+    background: linear-gradient(180deg,
+        #9b9a9a 0%,
+        #eeeeef 8%,
+        #000000 18%,
+        #000000 45%,
+        #e9eaeb 60%,
+        #8b7d7d 75%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent; /* Safari/WebKit */
+    color: transparent; /* modern browsers */
+
+    position: relative; /* needed for the gloss pseudo-element */
+    display: inline-block; /* shrink-wrap the gloss overlay to the text */
+    font-weight: 700; /* slightly bolder for the metallic look */
+    letter-spacing: -0.01em;
+    text-shadow: 0 1px 0 rgba(255,255,255,0.6), 0 3px 8px rgba(0,0,0,0.5);
+}
+
+.metal-gloss::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 4%;
+    height: 8%;
+    pointer-events: none;
+    background: linear-gradient(90deg, rgba(255,255,255,0.6), rgba(255,255,255,0));
+    mix-blend-mode: screen;
+    opacity: 0.6;
+}
+
+html, body { overflow-x: hidden; }
+
+@media (min-width: 1921px) {
+    h1 {
+        font-size: 10rem;
+    }
+    button {
+        font-size: 1.25rem;
+    }
+    .cube {
+        right: -25%;
+        width: 125vw;
+    }
+    button {
+        gap: 50px;
+    }
+}
+
+@media (max-width: 600px) {
+    h1 {
+        font-size: 3rem;
+    }
+    h6 {
+        font-size: 1rem;
+    }
+    button {
+        font-size: 0.875rem;
+        padding: 4px 6px;
+    }
+    .cube {
+        right: -30%;
+        width: 150vw;
+        height: 100vh;
+    }
+}
+
+@media (min-width: 600px) and (max-width: 900px) {
+    h1 {
+        font-size: 5rem;
+    }
+    h6 {
+        font-size: 1.25rem;
+    }
+    button {
+        font-size: 1rem;
+        padding: 5px 8px;
+    }
+    .cube {
+        right: -25%;
+        width: 125vw;
+        height: 100vh;
+    }
+}
